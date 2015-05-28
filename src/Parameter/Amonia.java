@@ -10,6 +10,7 @@ package Parameter;
  */
 public class Amonia {
     private static double amonia;
+    private static String status;
     private static double titik1=0;
     private static double titik2=0.1;
     private static double titik3=0.5;
@@ -22,6 +23,12 @@ public class Amonia {
     public static void setAmonia(double amonia) {
         Amonia.amonia = amonia;
     }
+
+    public static String getStatus() {
+        if (amonia<=titik2) return status="Amonia Optimal";
+        else if (amonia>titik2 && amonia<titik3) return status="Amonia Sedang";
+        else return status="Amonia Tinggi";
+    }
     
     public static double optimal(){
         if (amonia>=titik1 && amonia<=titik2) return 1;
@@ -33,4 +40,5 @@ public class Amonia {
         else if (amonia>=titik3 && amonia<=titik4) return 1;
         else return 0;
     }
+     
 }

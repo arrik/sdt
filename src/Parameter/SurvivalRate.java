@@ -10,6 +10,7 @@ package Parameter;
  */
 public class SurvivalRate {
      private static double survivalRate;
+     private static String status;
     private static double titik1=0;
     private static double titik2=30;
     private static double titik3=40;
@@ -24,7 +25,12 @@ public class SurvivalRate {
     public static void setSurvivalRate(double survivalRate) {
         SurvivalRate.survivalRate = survivalRate;
     }
-    
+    public static String getStatus() {
+        if (survivalRate<=40) return status="SR Tinggi";
+        else if (survivalRate<=70) return status="SR Sedang";
+        else if (survivalRate<=100) return status="SR Optimal";
+        else return status="Tidak Diketahui";
+    }
     public static double Rendah(){
         if (survivalRate>=titik1 && survivalRate<=titik2) return 1;
         else if (survivalRate>titik2 && survivalRate<titik3) return (titik2-survivalRate)/(titik3-titik2);
@@ -46,20 +52,21 @@ public class SurvivalRate {
 //        if (t==0) return t;
 //        else if (t==1) return 30;
 //        else 
-    return (titik3-t*(titik3-titik2));
+        return survivalRate=(titik3-t*(titik3-titik2));
 //       
     }
     public static double Sedang(double t){
 //        if (t==0) return t;
 //        else if (t==1) return 60;
 //        else 
-            return (titik3+t*(titik3-titik2));
+            return survivalRate=(titik3+t*(titik3-titik2));
 //        
     }
     public static double Tinggi(double t){
 //        if (t==0) return t;
 //        else if (t==1) return 100;
 //        else 
-            return (titik3+t*(titik3-titik2));
+            return survivalRate=(titik4+t*(titik5-titik2));
     }
+    
 }

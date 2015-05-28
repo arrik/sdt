@@ -10,6 +10,7 @@ package Parameter;
  */
 public class PH {
     private static double ph;
+    private static String status;
     private static double titik1=0;
     private static double titik2=5;
     private static double titik3=7;
@@ -24,7 +25,13 @@ public class PH {
     public static void setPh(double ph) {
         PH.ph = ph;
     }
-    
+    public static String getStatus() {
+        if (ph<=titik2) return status="PH Terlalu Asam";
+        else if (ph>titik2 && ph<titik3) return status="PH Sedikit Asam";
+        else if (ph>=titik3 && ph<=titik4) return status="PH Optimal";
+        else if(ph>titik4 && ph<titik5) return status="PH Sedikit Basa";
+        else return status="PH Terlalu Basa";
+    }
     public static double asam(){
         if (ph>=titik1 && ph<=titik2) return 1;
         else if (ph>titik2 && ph<titik3) return (titik3-ph)/(titik3-titik2);
@@ -41,4 +48,5 @@ public class PH {
         else if (ph>=titik5 && ph <=titik6) return 1;
         else return 0;
     }
+    
 }

@@ -14,6 +14,8 @@ public class Rule {
     private static double [] u_SR = new double[300];
     private static double [] z_SR = new double[300];
     private static double cog;
+    private static int [] useRule;
+    private static int j;
     
     public static void compute_u(){
         u_SR[0] = Math.min(Suhu.dingin(),  Math.min(PH.basa(),  Math.min(DO.rendah(),  Math.min(Amonia.optimal(),  Math.min(Nitrit.optimal(), Alkalinitas.rendah())))));
@@ -451,16 +453,20 @@ public class Rule {
         z_SR[213] = SurvivalRate.Sedang(u_SR[213]);
         z_SR[214] = SurvivalRate.Sedang(u_SR[214]);
         z_SR[215] = SurvivalRate.Sedang(u_SR[215]);
+
     }
     
     public static double cog(){
         double atas=0,bawah=0;
         for(int i=0;i<217;i++){
-            System.out.println("z_ke-"+i+ " : " +z_SR[i]);
-            System.out.println("u_ke-"+i+ " : " +u_SR[i]);
+            if(u_SR[i]!=0){
+                System.out.println("z_ke-"+i+ " : " +z_SR[i]);
+                System.out.println("u_ke-"+i+ " : " +u_SR[i]);
+            }
             atas+=(u_SR[i]*z_SR[i]);
             bawah+=u_SR[i];
         }
+//        System.out.println(useRule);
         return (atas/bawah);
     }
 

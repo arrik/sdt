@@ -10,6 +10,7 @@ package Parameter;
  */
 public class Alkalinitas {
      private static double alkalinitas;
+     private static String status;
     private static double titik1=0;
     private static double titik2=50;
     private static double titik3=100;
@@ -23,6 +24,14 @@ public class Alkalinitas {
 
     public static void setAlkalinitas(double alkalinitas) {
         Alkalinitas.alkalinitas = alkalinitas;
+    }
+
+    public static String getStatus() {
+        if (alkalinitas<=titik2) return status="Alkalinitas Sangat Rendah";
+        else if (alkalinitas>titik2 && alkalinitas<titik3) return status="Alkalinitas Rendah Sedang";
+        else if (alkalinitas>=titik3 && alkalinitas<=titik4) return status="Alkalinitas Optimal";
+        else if(alkalinitas>titik4 && alkalinitas<titik5) return status="Alkalinitas Tinggi Sedang";
+        else return status="Alkalinitas Sangat Tinggi";
     }
     
     public static double rendah(){
@@ -41,4 +50,5 @@ public class Alkalinitas {
         else if (alkalinitas>=titik5 && alkalinitas <=titik6) return 1;
         else return 0;
     }
+    
 }

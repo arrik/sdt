@@ -10,6 +10,7 @@ package Parameter;
  */
 public class Suhu {
     private static double suhu;
+    private static String status;
     private static double titik1=0;
     private static double titik2=15;
     private static double titik3=28;
@@ -24,7 +25,13 @@ public class Suhu {
     public static void setSuhu(double suhu) {
         Suhu.suhu = suhu;
     }
-    
+    public static String getStatus() {
+        if (suhu<=titik2) return status="Suhu Terlalu Dingin";
+        else if (suhu>titik2 && suhu<titik3) return status="Suhu Sedikit Dingin";
+        else if (suhu>=titik3 && suhu<=titik4) return status="Suhu Optimal";
+        else if(suhu>titik4 && suhu<titik5) return status="Suhu Sedikit Panas";
+        else return status="Suhu Terlalu Panas";
+    }
     public static double dingin(){
         if (suhu>=titik1 && suhu<=titik2) return 1;
         else if (suhu>titik2 && suhu<titik3) return (titik3-suhu)/(titik3-titik2);
@@ -41,4 +48,5 @@ public class Suhu {
         else if (suhu>=titik5 && suhu <=titik6) return 1;
         else return 0;
     }
+    
 }
